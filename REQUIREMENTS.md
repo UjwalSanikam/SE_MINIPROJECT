@@ -65,9 +65,44 @@ If the spoken command is not supported, the system should ignore it or display a
 - Member 3: Venkatesh
 - Member 4: Yashas
 
-## 7. Initial Work Division
+## 7. Work Division
 
-How should we divide?
+The course guidelines require that **each member completes one full functional feature** (UI, testing and DB work don't count as features), and that every member has their own git commits. So the split below is by feature, with each feature in its own module to keep PRs independent. Work is sized in rough effort points (1 = small, 3 = large) so the load is even.
+
+> Names below are a proposed assignment; swap them if the team prefers.
+
+### 7.1 Feature ownership
+
+| Member | Feature | Requirements | Module | Effort |
+|---|---|---|---|---|
+| Rohan | Voice Input: microphone capture, speech-to-text, silence/timeout handling | FR1 | `src/voice_input/` | 3 |
+| Ujwal | Command Recognition: text to command mapping, invalid-command handling, main dispatcher loop. Volume Control (up / down, limits) | FR5, FR2 | `src/command_parser/`, `src/main.py`, `src/volume/` | 2 + 1 |
+| Venkatesh | Playback Control: play / pause / resume with playback state | FR3 | `src/playback/` | 2 (+ CI/CD below) |
+| Yashas | Track Control: next / previous. Media Backend: OS-level media control adapter used by volume, playback and track | FR4 | `src/track/`, `src/media_backend/` | 1 + 2 |
+
+Totals are roughly 3 / 3 / 2+CI / 3 points. Venkatesh's lighter feature is offset by the CI/CD setup below.
+
+### 7.2 Quality / process ownership
+
+| Member | Concern |
+|---|---|
+| Rohan | Response time of a valid command (target: reasonably fast, e.g. under 2 s) |
+| Ujwal | Security validation and static analysis (SonarQube or similar) |
+| Venkatesh | CI/CD pipeline (Jenkins), unit test and code coverage reports |
+| Yashas | Jira board and sprint tracking |
+
+Everyone writes their own module's tests (pytest) and fills in their own rows of the requirements traceability matrix.
+
+### 7.3 Shared pieces
+
+- `src/common/` holds the shared interface (e.g. a `Command` enum and a `MediaController` interface). All four agree on it in the first sprint and it is merged first, so everyone codes against the same contract.
+- `src/media_backend/` implements that interface; volume, playback and track modules call it rather than touching the OS directly, so the laptop-vs-ESP decision only changes this one module and `voice_input`.
+
+### 7.4 Working agreement
+
+- One branch per feature (`feature/voice-input`, `feature/command-parser`, `feature/volume`, `feature/playback`, `feature/track`, `feature/media-backend`); no direct pushes to `main`.
+- Every PR needs at least one review from another member before merge.
+- Every PR links to its Jira user story.
 
 
 ## 8. Current Scope
