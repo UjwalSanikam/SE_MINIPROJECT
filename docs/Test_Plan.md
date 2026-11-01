@@ -149,3 +149,10 @@ Requirements use the identifiers in `docs/SRS.md`. Test cases use the identifier
 
 The SRS RTM maps every FR, NFR, and security requirement to TC-01 through TC-15. Test execution status will be updated to Pass/Fail/Blocked in the final test summary rather than assumed in this draft.
 
+### Sprint 2 validation status (issue #27)
+
+- **TC-11:** an automated test runs the deterministic capture-to-dispatch path
+  100 times and requires at least 95 runs to complete within two seconds.
+- **TC-15:** an automated test confirms a normal recognition stores neither an
+  audio file nor a transcript, and emits no Python log record.
+
