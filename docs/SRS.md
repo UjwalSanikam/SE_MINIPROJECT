@@ -159,12 +159,12 @@ flowchart LR
 | FR-13 | Command parser, CLI | TC-08 | Partially implemented |
 | FR-14 | Main dispatcher | TC-09 | Planned |
 | FR-15 | Feature modules, backend | TC-10 | Partially implemented |
-| NFR-01 | Performance test | TC-11 | Planned |
+| NFR-01 | Performance test | TC-11 | Validated in automated test |
 | NFR-02 | Resilience tests | TC-03, TC-10 | Partially implemented |
 | NFR-03 | Architecture review | TC-12 | Partially implemented |
 | NFR-04–NFR-05, SR-05 | GitHub Actions, quality script | TC-13 | Planned |
 | NFR-06 | CLI messages | TC-14 | Planned |
-| SR-01–SR-02 | Voice input, logging review | TC-15 | Planned |
+| SR-01–SR-02 | Voice input, logging review | TC-15 | Validated in automated test |
 | SR-03 | Command parser | TC-08 | Implemented |
 | SR-04 | Voice input, feature modules | TC-03, TC-10 | Partially implemented |
 
